@@ -1,5 +1,5 @@
 [windows]
-3.140.216.23
+3.140.216.23 # windows target
 
 [all:vars]
 ansible_connection=winrm
