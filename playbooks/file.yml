@@ -3,14 +3,14 @@
   hosts: windows
   vars:
     ansible_user: Administrator
-    ansible_password: TZt*zhf&%;ur-Rj!k.jrZ(VUDm4NHU?v
+    ansible_password: password
     ansible_connection: winrm
     ansible_winrm_transport: ntlm
     ansible_winrm_server_cert_validation: ignore
   tasks:
   - name: Copy a single file
     win_copy:
-      src: /home/fjaimesc/Documents/windows/example.conf
+      src: example.conf
       dest: C:\Users\Administrator\Documents\example.conf
 
   - name: Find files in path
@@ -23,7 +23,7 @@
       path: C:\Users\Administrator\Documents\example.conf
       backrefs: yes
       regex: '(^[ansible.tower])'
-      line: '$1ijaimestest'
+      line: '$1itestinginlinet'
 
   - name: Create a new group
     win_group:
@@ -33,10 +33,10 @@
 
   - name: Ensure user ipzel is created and use custom credentials to create the user
     win_user:
-      name: ipzel
-      firstname: Ipzel
-      surname: Jaimezz
-      password: 24MyP4ssw0rd
+      name: andrei
+      firstname: andrei
+      surname: marconii
+      password: maypassword
       state: present
       groups:
         - ansible
