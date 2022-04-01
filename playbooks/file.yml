@@ -1,0 +1,42 @@
+---
+- name: Copy, find and updating a file
+  hosts: windows
+  vars:
+    ansible_user: Administrator
+    ansible_password: TZt*zhf&%;ur-Rj!k.jrZ(VUDm4NHU?v
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
+  tasks:
+  - name: Copy a single file
+    win_copy:
+      src: /home/fjaimesc/Documents/windows/example.conf
+      dest: C:\Users\Administrator\Documents\example.conf
+
+  - name: Find files in path
+    win_find:
+      paths: C:\Users\Administrator
+      patterns: [ '*.conf']
+
+  - name: Update a line using backrefs
+    win_lineinfile:
+      path: C:\Users\Administrator\Documents\example.conf
+      backrefs: yes
+      regex: '(^[ansible.tower])'
+      line: '$1ijaimestest'
+
+  - name: Create a new group
+    win_group:
+      name: ansible
+      description: Ansible Group
+      state: present
+
+  - name: Ensure user ipzel is created and use custom credentials to create the user
+    win_user:
+      name: ipzel
+      firstname: Ipzel
+      surname: Jaimezz
+      password: 24MyP4ssw0rd
+      state: present
+      groups:
+        - ansible

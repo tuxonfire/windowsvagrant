@@ -1,0 +1,47 @@
+---
+- name: install and start git, notepad and updates
+  hosts: windows
+  vars:
+    ansible_user: Administrator
+    ansible_password: 6=3dIzK37Jd@nm!eyk=boLc(f&VQyTAj
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
+
+  tasks:
+  - name: Set timezone to 'Central Standard Time' (GMT-06:00)
+    win_timezone:
+      timezone: Central Standard Time
+
+
+  - name: Install all security updates with automatic reboots
+    win_updates:
+      category_names:
+      - SecurityUpdates
+      reboot: yes
+
+  - name: Install git
+    win_chocolatey:
+      name: git
+      state: present
+
+  - name: install and pin Notepad++ at 7.6.3
+    win_chocolatey:
+      name: notepadplusplus
+      version: 7.6.3
+      pinned: yes
+      state:
+
+  - name: install the Win32-OpenSSH service
+    win_chocolatey:
+      name: openssh
+      package_params: /SSHServerFeature
+      state: present
+
+  - name: set the default shell to PowerShell
+    win_regedit:
+      path: HKLM:\SOFTWARE\OpenSSH
+      name: DefaultShell
+      data: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+      type: string
+      state: present

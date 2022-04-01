@@ -1,0 +1,8 @@
+[windows]
+3.140.216.23
+
+[all:vars]
+ansible_connection=winrm
+#ansible_connection=ssh
+#ansible_shell_type=powershell
+#host_key_checking=false

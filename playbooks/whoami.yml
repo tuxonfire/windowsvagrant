@@ -1,0 +1,15 @@
+---
+- name: install and start remote conection manager
+  hosts: windows
+#  become: yes
+  vars:
+    ansible_user: Administrator
+    ansible_password: TZt*zhf&%;ur-Rj!k.jrZ(VUDm4NHU?v
+    ansible_connection: ssh
+    ansible_winrm_transport: basic
+    ansible_shell_type: powershell
+    ansible_winrm_server_cert_validation: ignore
+
+  tasks:
+    - name: Check my user name
+      win_whoami:

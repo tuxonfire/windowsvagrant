@@ -1,0 +1,12 @@
+---
+- name: Ping over windows
+  hosts: windows
+  vars:
+    ansible_user: Administrator
+    ansible_password: ?t*SYjcmDM8wGN3HL9Lt=fK@jAtaqWqE
+    ansible_connection: winrm
+    ansible_winrm_transport: ntlm
+    ansible_winrm_server_cert_validation: ignore
+
+  tasks:
+  - ping:
