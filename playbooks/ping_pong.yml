@@ -3,7 +3,7 @@
   hosts: windows
   vars:
     ansible_user: Administrator
-    ansible_password: ?t*SYjcmDM8wGN3HL9Lt=fK@jAtaqWqE
+    ansible_password: SuP3RstR0ngP4zzW0rd!
     ansible_connection: winrm
     ansible_winrm_transport: ntlm
     ansible_winrm_server_cert_validation: ignore
