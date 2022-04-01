@@ -4,7 +4,7 @@
 #  become: yes
   vars:
     ansible_user: Administrator
-    ansible_password: TZt*zhf&%;ur-Rj!k.jrZ(VUDm4NHU?v
+    ansible_password: SuP3RstR0ngP4zzW0rd#
     ansible_connection: ssh
     ansible_winrm_transport: basic
     ansible_shell_type: powershell
