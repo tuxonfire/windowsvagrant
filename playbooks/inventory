@@ -1,5 +1,5 @@
 [windows]
-3.140.216.23 # windows target
+IP/hostname #  windows target
 
 [all:vars]
 ansible_connection=winrm
