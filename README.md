@@ -1,6 +1,6 @@
 ### Windows2019 using Vagrant and some basic Ansible playbooks 
 
-Install Vagrant. Instrunctions [here](https://www.vagrantup.com/docs/installation).
+Install Vagrant. Follow the instructions [here](https://www.vagrantup.com/docs/installation).
 
 Clone the repo:
 
