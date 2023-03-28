@@ -1,0 +1,19 @@
+---
+- name: install and start remote conection manager
+  hosts: all
+  vars:
+    ansible_user: vagrant
+    ansible_password: vagrant
+    ansible_connection: winrm
+    ansible_winrm_server_cert_validation: ignore
+    ansible_port: 5985
+
+  tasks:
+  - name: Install all security updates with automatic reboots
+    win_updates:
+      category_names:
+      - SecurityUpdates
+      - CriticalUpdates
+      - UpdateRollups
+      state: installed
+      reboot: yes
