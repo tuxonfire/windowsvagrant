@@ -1,7 +1,9 @@
 ---
-- name: install AD DS feature
+- name: Install AD features 
   ansible.windows.win_feature:
-    name: AD-Domain-Services
+    name: 
+     - AD-Domain-Services
+     - DHCP
     include_management_tools: true
     include_sub_features: true
     state: present
@@ -10,6 +12,15 @@
 - name: debug
   debug:
     var: win_feature_result
+
+
+- name: Setting up DHCP server
+  win_dhcp_scope:
+     name: " DHCP"
+     start_ip_address: "192.168.1.100"
+     end_ip_address: "192.168.1.200"
+     subnet_mask: "255.255.255.0"
+     state: present
 
 - name: Create a new forest
   ansible.windows.win_domain:
