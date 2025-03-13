@@ -1,0 +1,26 @@
+---
+- name: install AD DS feature
+  ansible.windows.win_feature:
+    name: AD-Domain-Services
+    include_management_tools: true
+    include_sub_features: true
+    state: present
+  register: win_feature_result
+
+- name: debug
+  debug:
+    var: win_feature_result
+
+- name: Create a new forest
+  ansible.windows.win_domain:
+    dns_domain_name: happy.domain
+    safe_mode_password: 'SuP3RstR0ngP4zzW0rdTAj'
+  register: win_domain_result
+
+- name: debug
+  debug:
+    var: win_domain_result
+
+- name: Reboot after creation
+  ansible.windows.win_reboot:
+  when: win_domain_result.reboot_required
